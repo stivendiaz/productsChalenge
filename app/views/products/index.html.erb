@@ -1,0 +1,29 @@
+<h1>Productos</h1>
+<%=link_to 'Nuevo producto',new_product_path,class:"btn btn-primary"%>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>precio</th>
+      <th>categorias</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        
+            <% product.categories.each do |proca| %>
+                <td><%= proca[:name] %></td>
+            <% end%>
+        
+        <td>
+          <%= link_to "Editar", edit_product_path(product) %>
+          <%=  link_to "Eliminar",product, method: :delete, data: { confirm: "¿Estás seguro de eliminar este post?" }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
